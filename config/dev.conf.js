@@ -5,11 +5,11 @@ var path = require('path');
 
 module.exports = ({
   entry: [
-    './examples/basic.js',
+    './examples/oauth.js',
   ],
   output: {
-    path: './examples/',
-    filename: '/dist.js',
+    path: './examples',
+    filename: 'dist.js',
     library: 'spotifySdk',
     libraryTarget: 'umd'
   },
