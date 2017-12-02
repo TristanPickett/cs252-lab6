@@ -11,6 +11,33 @@
   <link href="css/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+  <style type="text/css">
+    .album {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    .card {
+      float: left;
+      width: auto;
+      padding: .25rem;
+      padding-top: 0px;
+      padding-bottom: 5px;
+      margin-bottom: 0px;
+      border: 0;
+    }
+
+    .card > img {
+      margin-bottom: .75rem;
+    }
+
+    .card-text {
+      text-align: center;
+      width: 120px;
+      font-size: 80%;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -18,24 +45,23 @@
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="/">SpotipHy</a>
-      <a class="btn btn-primary" href="/login">Sign In</a>
     </div>
   </nav>
 
   <div class="container text-center">
     <div class="row">
       <div class="col-xl-9 mx-auto">
-        <h1 class="mb-5">Welcome Back!</h1>
+        <h1 class="mb-3">Welcome Back!</h1>
       </div>
     </div>
   </div>
 
   <div class="container">
     <div class="row">
-      <div class="col-xl-9 mx-auto">
+      <div class="">
         <h2 class="mb-5">Your Playlists</h2>
-        <ul class="list-group" id="playlists">
-        </ul>
+        <div class="row album" id="playlists">
+        </div>
       </div>
     </div>
   </div>

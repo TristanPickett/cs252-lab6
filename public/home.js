@@ -50,6 +50,14 @@ track.search('R U mine?', {limit: 5}).then((trackCollection) => {
  */
 var user = new UserHandler();
 
+function createNode(element) {
+    return document.createElement(element);
+}
+
+function append(parent, el) {
+  return parent.appendChild(el);
+}
+
 /*
  * #1 example
  * Get the current user.
@@ -57,8 +65,29 @@ var user = new UserHandler();
 user.me().then((userEntity) => {
 		console.log(userEntity);
 		console.log(userEntity._id);
+    const ul = document.getElementById('playlists')
 		user.playlists(userEntity._id).then((playlistCollection) => {
 			console.log(playlistCollection);
+      playlistCollection.map(function(playlist) {
+        let a = createNode('a'),
+            img = createNode('img'),
+            p = createNode('p');
+        if (playlist._images.length == 1) {
+          img.src = playlist._images[0]["url"];
+          img.style.cssText = "width: 120px; height: 120px;";
+        }
+        else {
+          img.src = playlist._images[1]["url"];
+          img.style.cssText = "width: 120px; height: 120px;";
+        }
+        a.href = "/";
+        a.className += " card";
+        p.innerHTML = playlist._name;
+        p.className += " card-text";
+        append(a, img);
+        append(a, p);
+        append(ul, a);
+      });
 		});
 });
 
