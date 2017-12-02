@@ -6,7 +6,7 @@ var path = require('path');
 module.exports = ({
   entry: {
     oauth: './public/oauth.js',
-    basic: './public/basic.js'
+    home: './public/home.js'
   },
   output: {
     path: './public',

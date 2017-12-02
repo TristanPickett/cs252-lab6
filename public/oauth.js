@@ -17,7 +17,7 @@ client.settings = {
     clientId: 'c7b3b4be06ec43cfa7ed4facfed7a6bc',
     secretId: 'd8a020b39ffd43ddabd458ec712b7dad',
     scopes: ['user-library-read user-top-read playlist-read-private playlist-read-collaborative streaming'],
-    redirect_uri: 'http://localhost:8080/webpack-dev-server/basic.html'
+    redirect_uri: 'http://localhost:8080/webpack-dev-server/home.html'
 };
 
 /*
