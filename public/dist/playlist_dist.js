@@ -115,6 +115,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var user = new _UserHandler2.default();
 	var trackHandler = new _TrackHandler2.default();
 	var popularity = 0;
+	var pH = 0;
 	var acousticness = 0;
 	var danceability = 0;
 	var energy = 0;
@@ -123,12 +124,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	user.playlists(userID, playlistID).then(function (playlist) {
 	  console.log(playlist);
-	  console.log(playlist._tracks.items.length);
 	  var sumPopularity = 0;
 	  var count = 0;
 	  for (var i = 0; i < playlist._tracks.items.length; i++) {
-	    console.log(playlist._tracks.items[i]);
-	    console.log(playlist._tracks.items[i].track.popularity);
 	    sumPopularity += playlist._tracks.items[i].track.popularity;
 	    if (playlist._tracks.items[i].track.id) {
 	      trackIDs.push(playlist._tracks.items[i].track.id);
@@ -136,27 +134,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	  popularity = sumPopularity / playlist._tracks.items.length;
-	  console.log(trackIDs);
-	  trackHandler.audioFeatures(trackIDs).then(function (features) {
+	  pH = popularity / 100 * 14;
+	
+	  trackHandler.audioFeatures(trackIDs).then(function (response) {
+	    var features = response.audio_features;
 	    console.log(features);
 	    var acousticnessSum = 0.0;
 	    var danceabilitySum = 0.0;
 	    var energySum = 0.0;
 	    var tempoSum = 0.0;
 	    for (var j = 0; j < features.length; j++) {
-	      if (features[j]) {
-	        acousticnessSum += features[j].acousticness;
-	        danceabilitySum += features[j].danceability;
-	        energySum += features[j].danceability;
-	        tempoSum += features[j].tempo;
-	      }
+	      acousticnessSum += features[j].acousticness;
+	      danceabilitySum += features[j].danceability;
+	      energySum += features[j].energy;
+	      tempoSum += features[j].tempo;
 	    }
+	
 	    acousticness = acousticnessSum / count;
 	    danceability = danceabilitySum / count;
 	    energy = energySum / count;
 	    tempo = tempoSum / count;
 	
 	    console.log("Popularity: " + popularity);
+	    console.log("pH: " + pH);
 	    console.log("Acousticness: " + acousticness);
 	    console.log("Danceability: " + danceability);
 	    console.log("Energy: " + energy);
