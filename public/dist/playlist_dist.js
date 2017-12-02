@@ -54,57 +54,51 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/*
-	 * Basic examples
-	 * Test a lot of handlers that don't require user login.
-	 *
-	 */
 	'use strict';
 	
 	var _Client = __webpack_require__(1);
 	
 	var _Client2 = _interopRequireDefault(_Client);
 	
-	var _UserHandler = __webpack_require__(15);
-	
-	var _UserHandler2 = _interopRequireDefault(_UserHandler);
-	
 	var _PlaylistHandler = __webpack_require__(12);
 	
 	var _PlaylistHandler2 = _interopRequireDefault(_PlaylistHandler);
+	
+	var _UserHandler = __webpack_require__(15);
+	
+	var _UserHandler2 = _interopRequireDefault(_UserHandler);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var client = _Client2.default.instance;
 	
 	client.settings = {
-	    clientId: 'c7b3b4be06ec43cfa7ed4facfed7a6bc',
-	    secretId: 'd8a020b39ffd43ddabd458ec712b7dad',
-	    scopes: ['user-library-read user-top-read playlist-read-private playlist-read-collaborative'],
-	    redirect_uri: 'https://spotiphy-0.firebaseapp.com/home.html'
+	  clientId: 'c7b3b4be06ec43cfa7ed4facfed7a6bc',
+	  secretId: 'd8a020b39ffd43ddabd458ec712b7dad',
+	  scopes: ['user-library-read user-top-read playlist-read-private playlist-read-collaborative'],
+	  redirect_uri: 'https://spotiphy-0.firebaseapp.com/home.html'
 	};
 	
-	/*
-	 * Login user
-	 * This is a way, you can do it however you want
-	 */
-	sessionStorage.clear();
+	var playlistID = void 0;
 	function session() {
-	    if (sessionStorage.token) {
-	        client.token = sessionStorage.token;
-	    } else if (window.location.hash.split('&')[0].split('=')[1]) {
-	        sessionStorage.token = window.location.hash.split('&')[0].split('=')[1];
-	        client.token = sessionStorage.token;
-	    }
+	  if (sessionStorage.token) {
+	    client.token = sessionStorage.token;
+	  } else if (window.location.hash.split('&')[0].split('=')[1]) {
+	    sessionStorage.token = window.location.hash.split('&')[0].split('=')[1];
+	    client.token = sessionStorage.token;
+	  }
+	
+	  if (sessionStorage.playlistID) {
+	    playlistID = sessionStorage.playlistID;
+	  } else if (window.location.hash.split('&')[0].split('=')[1]) {
+	    sessionStorage.playlistID = window.location.hash.split('&')[0].split('=')[1];
+	    playlistID = sessionStorage.playlistID;
+	  }
 	}
+	
 	session();
-	function login() {
-	    client.login().then(function (url) {
-	        window.location.href = url;
-	    });
-	}
-	document.querySelector('#login').onclick = login;
-	document.querySelector('#login0').onclick = login;
+	
+	console.log(playlistID);
 
 /***/ }),
 /* 1 */
@@ -3839,4 +3833,4 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ])
 });
 ;
-//# sourceMappingURL=oauth_dist.js.map
+//# sourceMappingURL=playlist_dist.js.map

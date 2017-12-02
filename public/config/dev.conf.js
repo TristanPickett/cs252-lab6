@@ -6,7 +6,8 @@ var path = require('path');
 module.exports = ({
   entry: {
     oauth: './public/oauth.js',
-    home: './public/home.js'
+    home: './public/home.js',
+    playlist: './public/playlist.js'
   },
   output: {
     path: './public/dist',

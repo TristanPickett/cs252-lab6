@@ -88,13 +88,3 @@ user.me().then((userEntity) => {
       });
 		});
 });
-
-/*
- * #3 example
- * Get the playlists by user id, should return a Playlist collection.
- */
-/*user.me().playlists().then((playlistCollection) => {
-    console.log(playlistCollection);
-});*/
-
-/playlist.html#id=ajsdlfkja

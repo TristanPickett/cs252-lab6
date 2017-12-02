@@ -65,17 +65,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Client2 = _interopRequireDefault(_Client);
 	
-	var _TrackHandler = __webpack_require__(9);
-	
-	var _TrackHandler2 = _interopRequireDefault(_TrackHandler);
-	
 	var _PlaylistHandler = __webpack_require__(12);
 	
 	var _PlaylistHandler2 = _interopRequireDefault(_PlaylistHandler);
-	
-	var _ArtistHandler = __webpack_require__(3);
-	
-	var _ArtistHandler2 = _interopRequireDefault(_ArtistHandler);
 	
 	var _UserHandler = __webpack_require__(15);
 	
@@ -106,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * TrackHandler Examples
 	 *
 	 */
-	var track = new _TrackHandler2.default();
+	var track = new TrackHandler();
 	
 	/*
 	 * #1 example
@@ -151,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        img.src = playlist._images[1]["url"];
 	        img.style.cssText = "width: 120px; height: 120px;";
 	      }
-	      a.href = "/";
+	      a.href = "/playlist.html#id=" + playlist._id;
 	      a.className += " card";
 	      p.innerHTML = playlist._name;
 	      p.className += " card-text";
@@ -161,14 +153,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	  });
 	});
-	
-	/*
-	 * #3 example
-	 * Get the playlists by user id, should return a Playlist collection.
-	 */
-	/*user.me().playlists().then((playlistCollection) => {
-	    console.log(playlistCollection);
-	});*/
 
 /***/ }),
 /* 1 */
