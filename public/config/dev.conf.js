@@ -9,7 +9,8 @@ module.exports = ({
     home: './public/home.js'
   },
   output: {
-    path: './public',
+    path: './public/dist',
+    publicPath: './dist',
     filename: '[name]_dist.js',
     library: 'spotifySdk',
     libraryTarget: 'umd'

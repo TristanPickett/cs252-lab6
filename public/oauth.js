@@ -5,19 +5,19 @@
  */
 'use strict'
 
-import Client from '../src/Client';
-import UserHandler from '../src/handlers/UserHandler';
-import TrackHandler from '../src/handlers/TrackHandler';
-import PlaylistHandler from '../src/handlers/PlaylistHandler';
-import ArtistHandler from '../src/handlers/ArtistHandler';
+import Client from './src/Client';
+import UserHandler from './src/handlers/UserHandler';
+import TrackHandler from './src/handlers/TrackHandler';
+import PlaylistHandler from './src/handlers/PlaylistHandler';
+import ArtistHandler from './src/handlers/ArtistHandler';
 
 let client = Client.instance;
 
 client.settings = {
     clientId: 'c7b3b4be06ec43cfa7ed4facfed7a6bc',
     secretId: 'd8a020b39ffd43ddabd458ec712b7dad',
-    scopes: ['user-library-read user-top-read playlist-read-private playlist-read-collaborative streaming'],
-    redirect_uri: 'http://localhost:8080/webpack-dev-server/home.html'
+    scopes: ['user-library-read user-top-read playlist-read-private playlist-read-collaborative'],
+    redirect_uri: 'https://spotiphy-0.firebaseapp.com/home.html'
 };
 
 /*

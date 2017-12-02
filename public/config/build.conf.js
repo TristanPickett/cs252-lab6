@@ -10,10 +10,10 @@ module.exports = ({
     'es6-shim',
     'es6-shim/es6-sham',
     'json3',
-    './src/index.js'
+    './public/src/index.js'
   ],
   output: {
-    path: './lib/',
+    path: './public/lib/',
     filename: '/dist.js',
     library: 'spotifySdk',
     libraryTarget: 'umd'
