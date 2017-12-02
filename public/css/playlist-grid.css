@@ -1,0 +1,24 @@
+.album {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.card {
+  float: left;
+  width: auto;
+  padding: .25rem;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  margin-bottom: 0px;
+  border: 0;
+}
+
+.card > img {
+  margin-bottom: .75rem;
+}
+
+.card-text {
+  text-align: center;
+  width: 120px;
+  font-size: 80%;
+}
