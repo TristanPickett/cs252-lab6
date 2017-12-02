@@ -1,5 +1,8 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
     <title>Example of the Authorization Code flow with Spotify</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
@@ -23,7 +26,6 @@
       }
     </style>
   </head>
-
   <body>
     <!--<div class="container">
       <div id="login">
@@ -43,7 +45,7 @@
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="/">SpotipHy</a>
-        <a class="btn btn-primary" href="/login">Sign In</a>
+        <a class="btn btn-primary" id="login">Sign In</a>
       </div>
     </nav>
 
@@ -118,7 +120,7 @@
           </div>
           <div class="col-lg-4">
             <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
+              <img class="img-fluid rounded-circle mb-3" src="img/testimonial3.jpg" alt="">
               <h5>Sarah	W.</h5>
               <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
             </div>
@@ -161,6 +163,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="../lib/dist.js"></script>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h1>Logged in as {{display_name}}</h1>
