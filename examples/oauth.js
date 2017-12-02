@@ -16,7 +16,7 @@ let client = Client.instance;
 client.settings = {
     clientId: 'c7b3b4be06ec43cfa7ed4facfed7a6bc',
     secretId: 'd8a020b39ffd43ddabd458ec712b7dad',
-    scopes: ['user-follow-modify user-follow-read user-library-read user-top-read'],
+    scopes: ['user-library-read user-top-read playlist-read-private playlist-read-collaborative streaming'],
     redirect_uri: 'http://localhost:8080/webpack-dev-server/basic.html'
 };
 
@@ -24,6 +24,7 @@ client.settings = {
  * Login user
  * This is a way, you can do it however you want
  */
+sessionStorage.clear();
 function session() {
     if (sessionStorage.token) {
         client.token = sessionStorage.token;

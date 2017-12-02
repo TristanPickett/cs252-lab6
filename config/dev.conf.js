@@ -4,12 +4,13 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = ({
-  entry: [
-    './examples/oauth.js',
-  ],
+  entry: {
+    oauth: './examples/oauth.js',
+    basic: './examples/basic.js'
+  },
   output: {
-    path: './examples',
-    filename: 'dist.js',
+    path: './lib',
+    filename: '[name]_dist.js',
     library: 'spotifySdk',
     libraryTarget: 'umd'
   },
