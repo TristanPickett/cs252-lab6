@@ -6,9 +6,7 @@
 'use strict'
 
 import Client from './src/Client';
-import TrackHandler from './src/handlers/TrackHandler';
 import PlaylistHandler from './src/handlers/PlaylistHandler';
-import ArtistHandler from './src/handlers/ArtistHandler';
 import UserHandler from './src/handlers/UserHandler';
 
 let client = Client.instance;
@@ -98,3 +96,5 @@ user.me().then((userEntity) => {
 /*user.me().playlists().then((playlistCollection) => {
     console.log(playlistCollection);
 });*/
+
+/playlist.html#id=ajsdlfkja
