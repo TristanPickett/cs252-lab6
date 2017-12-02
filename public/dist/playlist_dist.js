@@ -133,7 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      count += 1;
 	    }
 	  }
-	  popularity = sumPopularity / playlist._tracks.items.length;
+	  popularity = sumPopularity / count;
 	  pH = popularity / 100 * 14;
 	
 	  trackHandler.audioFeatures(trackIDs).then(function (response) {
@@ -143,17 +143,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var danceabilitySum = 0.0;
 	    var energySum = 0.0;
 	    var tempoSum = 0.0;
+	    var count2 = 0;
 	    for (var j = 0; j < features.length; j++) {
-	      acousticnessSum += features[j].acousticness;
-	      danceabilitySum += features[j].danceability;
-	      energySum += features[j].energy;
-	      tempoSum += features[j].tempo;
+	      if (features[j]) {
+	        acousticnessSum += features[j].acousticness;
+	        danceabilitySum += features[j].danceability;
+	        energySum += features[j].energy;
+	        tempoSum += features[j].tempo;
+	        count2 += 1;
+	      }
 	    }
 	
-	    acousticness = acousticnessSum / count;
-	    danceability = danceabilitySum / count;
-	    energy = energySum / count;
-	    tempo = tempoSum / count;
+	    acousticness = acousticnessSum / count2;
+	    danceability = danceabilitySum / count2;
+	    energy = energySum / count2;
+	    tempo = tempoSum / count2;
 	
 	    console.log("Popularity: " + popularity);
 	    console.log("pH: " + pH);
