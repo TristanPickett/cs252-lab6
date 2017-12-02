@@ -78,7 +78,7 @@ user.me().then((userEntity) => {
           img.src = playlist._images[1]["url"];
           img.style.cssText = "width: 120px; height: 120px;";
         }
-        a.href = "/";
+        a.href = "/playlist.html#id=" + playlist._id;
         a.className += " card";
         p.innerHTML = playlist._name;
         p.className += " card-text";
