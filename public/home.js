@@ -49,7 +49,7 @@ function append(parent, el) {
 user.me().then((userEntity) => {
 		console.log(userEntity);
 		console.log(userEntity._id);
-    const ul = document.getElementById('playlists')
+    const ul = document.getElementById('playlists');
 		user.playlists(userEntity._id).then((playlistCollection) => {
 			console.log(playlistCollection);
       playlistCollection.map(function(playlist) {
@@ -64,7 +64,7 @@ user.me().then((userEntity) => {
           img.src = playlist._images[1]["url"];
           img.style.cssText = "width: 120px; height: 120px;";
         }
-        a.href = "playlist.html#id=" + playlist._id;
+        a.href = "playlist.html#id=" + playlist._id + "&user=" + playlist._owner["id"];
         a.className += " card";
         p.innerHTML = playlist._name;
         p.className += " card-text";

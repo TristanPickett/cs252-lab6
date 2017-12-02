@@ -68,6 +68,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _UserHandler2 = _interopRequireDefault(_UserHandler);
 	
+	var _TrackHandler = __webpack_require__(9);
+	
+	var _TrackHandler2 = _interopRequireDefault(_TrackHandler);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var client = _Client2.default.instance;
@@ -80,25 +84,85 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	
 	var playlistID = void 0;
+	var userID = void 0;
+	
 	function session() {
 	  if (sessionStorage.token) {
 	    client.token = sessionStorage.token;
-	  } else if (window.location.hash.split('&')[0].split('=')[1]) {
-	    sessionStorage.token = window.location.hash.split('&')[0].split('=')[1];
-	    client.token = sessionStorage.token;
 	  }
 	
-	  if (sessionStorage.playlistID) {
-	    playlistID = sessionStorage.playlistID;
-	  } else if (window.location.hash.split('&')[0].split('=')[1]) {
+	  if (window.location.hash.split('&')[0].split('=')[1]) {
 	    sessionStorage.playlistID = window.location.hash.split('&')[0].split('=')[1];
 	    playlistID = sessionStorage.playlistID;
+	  } else if (sessionStorage.playlistID) {
+	    playlistID = sessionStorage.playlistID;
+	  }
+	
+	  if (window.location.hash.split('&')[1].split('=')[1]) {
+	    sessionStorage.userID = window.location.hash.split('&')[1].split('=')[1];
+	    userID = sessionStorage.userID;
+	  } else if (sessionStorage.userID) {
+	    userID = sessionStorage.userID;
 	  }
 	}
 	
 	session();
 	
 	console.log(playlistID);
+	console.log(userID);
+	console.log(client.token);
+	
+	var user = new _UserHandler2.default();
+	var trackHandler = new _TrackHandler2.default();
+	var popularity = 0;
+	var acousticness = 0;
+	var danceability = 0;
+	var energy = 0;
+	var tempo = 0;
+	var trackIDs = [];
+	
+	user.playlists(userID, playlistID).then(function (playlist) {
+	  console.log(playlist);
+	  console.log(playlist._tracks.items.length);
+	  var sumPopularity = 0;
+	  var count = 0;
+	  for (var i = 0; i < playlist._tracks.items.length; i++) {
+	    console.log(playlist._tracks.items[i]);
+	    console.log(playlist._tracks.items[i].track.popularity);
+	    sumPopularity += playlist._tracks.items[i].track.popularity;
+	    if (playlist._tracks.items[i].track.id) {
+	      trackIDs.push(playlist._tracks.items[i].track.id);
+	      count += 1;
+	    }
+	  }
+	  popularity = sumPopularity / playlist._tracks.items.length;
+	  console.log(trackIDs);
+	  trackHandler.audioFeatures(trackIDs).then(function (features) {
+	    console.log(features);
+	    var acousticnessSum = 0.0;
+	    var danceabilitySum = 0.0;
+	    var energySum = 0.0;
+	    var tempoSum = 0.0;
+	    for (var j = 0; j < features.length; j++) {
+	      if (features[j]) {
+	        acousticnessSum += features[j].acousticness;
+	        danceabilitySum += features[j].danceability;
+	        energySum += features[j].danceability;
+	        tempoSum += features[j].tempo;
+	      }
+	    }
+	    acousticness = acousticnessSum / count;
+	    danceability = danceabilitySum / count;
+	    energy = energySum / count;
+	    tempo = tempoSum / count;
+	
+	    console.log("Popularity: " + popularity);
+	    console.log("Acousticness: " + acousticness);
+	    console.log("Danceability: " + danceability);
+	    console.log("Energy: " + energy);
+	    console.log("Tempo: " + tempo);
+	  });
+	});
 
 /***/ }),
 /* 1 */
