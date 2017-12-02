@@ -122,6 +122,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var user = new _UserHandler2.default();
 	
+	function createNode(element) {
+	  return document.createElement(element);
+	}
+	
+	function append(parent, el) {
+	  return parent.appendChild(el);
+	}
+	
 	/*
 	 * #1 example
 	 * Get the current user.
@@ -129,8 +137,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	user.me().then(function (userEntity) {
 	  console.log(userEntity);
 	  console.log(userEntity._id);
+	  var ul = document.getElementById('playlists');
 	  user.playlists(userEntity._id).then(function (playlistCollection) {
 	    console.log(playlistCollection);
+	    playlistCollection.map(function (playlist) {
+	      var a = createNode('a'),
+	          img = createNode('img'),
+	          p = createNode('p');
+	      if (playlist._images.length == 1) {
+	        img.src = playlist._images[0]["url"];
+	        img.style.cssText = "width: 120px; height: 120px;";
+	      } else {
+	        img.src = playlist._images[1]["url"];
+	        img.style.cssText = "width: 120px; height: 120px;";
+	      }
+	      a.href = "/";
+	      a.className += " card";
+	      p.innerHTML = playlist._name;
+	      p.className += " card-text";
+	      append(a, img);
+	      append(a, p);
+	      append(ul, a);
+	    });
 	  });
 	});
 	
