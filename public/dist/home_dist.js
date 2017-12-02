@@ -95,20 +95,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	session();
 	
 	/*
-	 * TrackHandler Examples
-	 *
-	 */
-	var track = new TrackHandler();
-	
-	/*
-	 * #1 example
-	 * Get tracks with the name 'R U mine?', should return a Collection of tracks.
-	 */
-	track.search('R U mine?', { limit: 5 }).then(function (trackCollection) {
-	  console.log(trackCollection);
-	});
-	
-	/*
 	 * UserHandler Examples
 	 *
 	 */
@@ -143,7 +129,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        img.src = playlist._images[1]["url"];
 	        img.style.cssText = "width: 120px; height: 120px;";
 	      }
-	      a.href = "/playlist.html#id=" + playlist._id;
+	      a.href = "playlist.html#id=" + playlist._id;
 	      a.className += " card";
 	      p.innerHTML = playlist._name;
 	      p.className += " card-text";
