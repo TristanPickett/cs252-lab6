@@ -8,6 +8,17 @@
 import Client from './src/Client';
 import PlaylistHandler from './src/handlers/PlaylistHandler';
 import UserHandler from './src/handlers/UserHandler';
+import firebase from 'firebase/app';
+import database from 'firebase/database';
+
+const app = firebase.initializeApp({
+  apiKey: "AIzaSyBPZDuSX_kdl6x_gro6V1mk7TFIZ2i1CJo",
+  authDomain: "spotiphy-0.firebaseapp.com",
+  databaseURL: "https://spotiphy-0.firebaseio.com",
+  projectId: "spotiphy-0",
+  storageBucket: "spotiphy-0.appspot.com",
+  messagingSenderId: "49114425376",
+});
 
 let client = Client.instance;
 
@@ -28,10 +39,6 @@ function session() {
 }
 session();
 
-/*
- * UserHandler Examples
- *
- */
 var user = new UserHandler();
 
 function createNode(element) {
@@ -42,13 +49,7 @@ function append(parent, el) {
   return parent.appendChild(el);
 }
 
-/*
- * #1 example
- * Get the current user.
- */
 user.me().then((userEntity) => {
-		console.log(userEntity);
-		console.log(userEntity._id);
     const ul = document.getElementById('playlists');
 		user.playlists(userEntity._id).then((playlistCollection) => {
 			console.log(playlistCollection);
@@ -74,3 +75,12 @@ user.me().then((userEntity) => {
       });
 		});
 });
+
+function fetchData() {
+  return firebase.database().ref('users').once("value").then(function(response) {
+    var data = response.val();
+    console.log(data);
+  });
+}
+
+fetchData();

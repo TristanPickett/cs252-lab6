@@ -4,6 +4,17 @@ import Client from './src/Client';
 import PlaylistHandler from './src/handlers/PlaylistHandler';
 import UserHandler from './src/handlers/UserHandler';
 import TrackHandler from './src/handlers/TrackHandler';
+import firebase from 'firebase/app';
+import database from 'firebase/database';
+
+const app = firebase.initializeApp({
+  apiKey: "AIzaSyBPZDuSX_kdl6x_gro6V1mk7TFIZ2i1CJo",
+  authDomain: "spotiphy-0.firebaseapp.com",
+  databaseURL: "https://spotiphy-0.firebaseio.com",
+  projectId: "spotiphy-0",
+  storageBucket: "spotiphy-0.appspot.com",
+  messagingSenderId: "49114425376",
+});
 
 let client = Client.instance;
 
@@ -52,9 +63,26 @@ var danceability = 0;
 var energy = 0;
 var tempo = 0;
 var trackIDs = [];
+var playlistName;
+var imgSrc;
+
+function saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo) {
+  var playlistData = {
+    name: playlistName,
+    imgSrc: imgSrc,
+    popularity: popularity,
+    danceability: danceability,
+    acousticness: acousticness,
+    energy: energy,
+    tempo: tempo
+  }
+  firebase.database().ref('users/' + userID + '/' + playlistID).update(playlistData);
+}
 
 user.playlists(userID, playlistID).then((playlist) => {
   console.log(playlist);
+  playlistName = playlist._name;
+  imgSrc = playlist._images[0]["url"];
   var sumPopularity = 0;
   var count = 0;
   for (let i = 0; i < playlist._tracks.items.length; i++) {
@@ -90,11 +118,15 @@ user.playlists(userID, playlistID).then((playlist) => {
     energy = energySum / count2;
     tempo = tempoSum / count2;
     
+    console.log(playlistName);
+    console.log(userID);
+    console.log(imgSrc);
     console.log("Popularity: " + popularity);
     console.log("pH: " + pH);
     console.log("Acousticness: " + acousticness);
     console.log("Danceability: " + danceability);
     console.log("Energy: " + energy);
     console.log("Tempo: " + tempo);
+    saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
   });
 });
