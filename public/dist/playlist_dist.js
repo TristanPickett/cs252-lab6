@@ -146,6 +146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    name: playlistName,
 	    imgSrc: imgSrc,
 	    popularity: popularity,
+	    pH: pH,
 	    danceability: danceability,
 	    acousticness: acousticness,
 	    energy: energy,

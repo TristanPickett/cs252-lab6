@@ -71,6 +71,7 @@ function saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acou
     name: playlistName,
     imgSrc: imgSrc,
     popularity: popularity,
+    pH: pH,
     danceability: danceability,
     acousticness: acousticness,
     energy: energy,
