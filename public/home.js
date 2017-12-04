@@ -80,6 +80,29 @@ function fetchData() {
   return firebase.database().ref('users').once("value").then(function(response) {
     var data = response.val();
     console.log(data);
+    const ul = document.getElementById('all-playlists');
+    for (var userID in data) {
+      if (data.hasOwnProperty(userID)) {
+        for (var playlistID in data[userID]) {
+          if (data[userID].hasOwnProperty(playlistID)) {
+            console.log(data[userID][playlistID]);
+            console.log(playlistID);
+            let a = createNode('a'),
+                img = createNode('img'),
+                p = createNode('p');
+            img.src = data[userID][playlistID]["imgSrc"];
+            img.style.cssText = "width: 120px; height: 120px;";
+            a.href = "playlist.html#id=" + playlistID + "&user=" + userID;
+            a.className += " card";
+            p.innerHTML = data[userID][playlistID]["name"];
+            p.className += " card-text";
+            append(a, img);
+            append(a, p);
+            append(ul, a);
+          }
+        }
+      }
+    }
   });
 }
 
