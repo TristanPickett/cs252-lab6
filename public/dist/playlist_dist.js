@@ -140,6 +140,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var trackIDs = [];
 	var playlistName;
 	var imgSrc;
+	var messages = ["Uses a typewriter", "Uses a typewriter", "Listens to Spotify on a record player", "Listens to Spotify on a record player", "Knits their own beanies", "Knits their own beanies", "Owns an iPhone", "Owns an iPhone", "Posts sunset pictures on Instagram", "Posts sunset pictures on Instagram", "Discovered the avocado", "Discovered the avocado", "Loves pumpkin spice lattes", "Loves pumpkin spice lattes"];
 	
 	function saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo) {
 	  var playlistData = {
@@ -203,7 +204,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    console.log("Danceability: " + danceability);
 	    console.log("Energy: " + energy);
 	    console.log("Tempo: " + tempo);
-	    saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
+	    if (playlist._public) {
+	      saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
+	    }
+	    console.log(messages[Math.floor(pH)]);
 	  });
 	});
 

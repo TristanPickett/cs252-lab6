@@ -65,6 +65,22 @@ var tempo = 0;
 var trackIDs = [];
 var playlistName;
 var imgSrc;
+const messages = [
+  "Uses a typewriter",
+  "Uses a typewriter",
+  "Listens to Spotify on a record player",
+  "Listens to Spotify on a record player",
+  "Knits their own beanies",
+  "Knits their own beanies",
+  "Owns an iPhone",
+  "Owns an iPhone",
+  "Posts sunset pictures on Instagram",
+  "Posts sunset pictures on Instagram",
+  "Discovered the avocado",
+  "Discovered the avocado",
+  "Loves pumpkin spice lattes",
+  "Loves pumpkin spice lattes"
+]
 
 function saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo) {
   var playlistData = {
@@ -131,5 +147,6 @@ user.playlists(userID, playlistID).then((playlist) => {
     if (playlist._public) {
       saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
     }
+    console.log(messages[Math.floor(pH)]);
   });
 });
