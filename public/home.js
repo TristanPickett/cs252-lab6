@@ -89,16 +89,25 @@ function fetchData() {
             console.log(playlistID);
             let a = createNode('a'),
                 img = createNode('img'),
-                p = createNode('p');
+                p = createNode('p'),
+                div = createNode('div'),
+                span = createNode('span');
             img.src = data[userID][playlistID]["imgSrc"];
             img.style.cssText = "width: 120px; height: 120px;";
             a.href = "playlist.html#id=" + playlistID + "&user=" + userID;
-            a.className += " card";
+            //a.className += " card";
+            div.className += " card";
             p.innerHTML = data[userID][playlistID]["name"];
             p.className += " card-text";
+            span.className += " popover";
+            span.innerHTML = "pH: " + data[userID][playlistID]["pH"].toFixed(3);
+            span.innerHTML += "\nPopularity: " + data[userID][playlistID]["popularity"].toFixed(3);
+            span.innerHTML += "\nTempo: " + data[userID][playlistID]["tempo"].toFixed(0);
             append(a, img);
             append(a, p);
-            append(ul, a);
+            append(div, a);
+            append(div, span);
+            append(ul, div);
           }
         }
       }
