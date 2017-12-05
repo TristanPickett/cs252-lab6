@@ -215,6 +215,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    var header = document.getElementById('playlist-name');
 	    header.innerHTML = playlistName;
+	    var user = document.getElementById('creator');
+	    user.innerHTML = userID;
 	
 	    var content = document.getElementById('analysis');
 	    var img = createNode('img'),
@@ -232,7 +234,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    span.style.cssText = "height: 25px;";
 	    append(content, span);
 	    output.innerHTML = pH.toFixed(2);
-	    if (pH <= 4) {
+	    if (pH <= 5) {
 	      output.style.cssText = "height: 25px; background: #4CAF50; opacity: 75%;";
 	      var image = document.getElementById('carousel1');
 	      image.src = "img/hipster.jpeg";
@@ -240,7 +242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      head.innerHTML = "Mainstream = Not Cool";
 	      var desc = document.getElementById('carousel1_p');
 	      desc.innerHTML = "Would you like a man-bun with that playlist? You are the definition of hipster.";
-	    } else if (pH > 4 && pH <= 9) {
+	    } else if (pH > 5 && pH <= 9) {
 	      output.style.cssText = "height: 25px; background: #EED202; opacity: 75%;";
 	      var _image = document.getElementById('carousel1');
 	      _image.src = "img/yawn.jpeg";
