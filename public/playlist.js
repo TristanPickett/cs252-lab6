@@ -128,6 +128,8 @@ user.playlists(userID, playlistID).then((playlist) => {
     console.log("Danceability: " + danceability);
     console.log("Energy: " + energy);
     console.log("Tempo: " + tempo);
-    saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
+    if (playlist._public) {
+      saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
+    }
   });
 });
