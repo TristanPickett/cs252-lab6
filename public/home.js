@@ -100,7 +100,12 @@ function fetchData() {
             p.innerHTML = data[userID][playlistID]["name"];
             p.className += " card-text";
             span.className += " popover";
-            span.innerHTML = "pH: " + data[userID][playlistID]["pH"].toFixed(3);
+            if (data[userID][playlistID]["pH"] == null) {
+              span.innerHTML = "pH: null\n";
+            }
+            else {
+              span.innerHTML = "pH: " + data[userID][playlistID]["pH"].toFixed(3);
+            }
             span.innerHTML += "\nPopularity: " + data[userID][playlistID]["popularity"].toFixed(3);
             span.innerHTML += "\nTempo: " + data[userID][playlistID]["tempo"].toFixed(0);
             append(a, img);
