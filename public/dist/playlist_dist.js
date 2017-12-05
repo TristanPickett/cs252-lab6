@@ -156,6 +156,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _app2.default.database().ref('users/' + userID + '/' + playlistID).update(playlistData);
 	}
 	
+	function createNode(element) {
+	  return document.createElement(element);
+	}
+	
+	function append(parent, el) {
+	  return parent.appendChild(el);
+	}
+	
 	user.playlists(userID, playlistID).then(function (playlist) {
 	  console.log(playlist);
 	  playlistName = playlist._name;
@@ -204,6 +212,121 @@ return /******/ (function(modules) { // webpackBootstrap
 	    console.log("Danceability: " + danceability);
 	    console.log("Energy: " + energy);
 	    console.log("Tempo: " + tempo);
+	
+	    var header = document.getElementById('playlist-name');
+	    header.innerHTML = playlistName;
+	
+	    var content = document.getElementById('analysis');
+	    var img = createNode('img'),
+	        input = createNode('input'),
+	        output = createNode('output'),
+	        span = createNode('span'),
+	        span2 = createNode('span'),
+	        span3 = createNode('span'),
+	        span4 = createNode('span'),
+	        span5 = createNode('span');
+	    img.src = imgSrc;
+	    img.style.cssText = "max-width: 300px; max-height: 300px; padding: 1.5rem";
+	    append(content, img);
+	    span.innerHTML = "pH: ";
+	    span.style.cssText = "height: 25px;";
+	    append(content, span);
+	    output.innerHTML = pH.toFixed(2);
+	    if (pH <= 4) {
+	      output.style.cssText = "height: 25px; background: #4CAF50; opacity: 75%;";
+	      var image = document.getElementById('carousel1');
+	      image.src = "img/hipster.jpeg";
+	      var head = document.getElementById('carousel1_header');
+	      head.innerHTML = "Mainstream = Not Cool";
+	      var desc = document.getElementById('carousel1_p');
+	      desc.innerHTML = "Would you like a man-bun with that playlist? You are the definition of hipster.";
+	    } else if (pH > 4 && pH <= 9) {
+	      output.style.cssText = "height: 25px; background: #EED202; opacity: 75%;";
+	      var _image = document.getElementById('carousel1');
+	      _image.src = "img/yawn.jpeg";
+	      var _head = document.getElementById('carousel1_header');
+	      _head.innerHTML = "Average Joe";
+	      var _desc = document.getElementById('carousel1_p');
+	      _desc.innerHTML = "Nothing special. This playlist is as average as my grades.";
+	    } else {
+	      output.style.cssText = "height: 25px; background: #ED4337; opacity: 75%;";
+	      var _image2 = document.getElementById('carousel1');
+	      _image2.src = "img/starbucks.jpeg";
+	      var _head2 = document.getElementById('carousel1_header');
+	      _head2.innerHTML = "Basic";
+	      var _desc2 = document.getElementById('carousel1_p');
+	      _desc2.innerHTML = "You're probably sipping on a pumpkin spice latte right now.";
+	    }
+	    append(content, output);
+	    input.type = "range";
+	    input.className += " slider";
+	    input.disabled = "true";
+	    input.min = "1";
+	    input.max = "14";
+	    input.value = pH;
+	    append(content, input);
+	    span2.innerHTML = "Tempo: " + tempo.toFixed(0) + " BPM, ";
+	    span3.innerHTML = "Acousticness: " + (acousticness * 100).toFixed(2) + "%, ";
+	    span4.innerHTML = "Energy: " + (energy * 100).toFixed(2) + "%, ";
+	    span5.innerHTML = "Danceability: " + (danceability * 100).toFixed(2) + "%";
+	    append(content, span2);
+	    append(content, span3);
+	    append(content, span4);
+	    append(content, span5);
+	
+	    if (danceability > 0.7) {
+	      var _image3 = document.getElementById('carousel2');
+	      _image3.src = "img/party.jpeg";
+	      var _head3 = document.getElementById('carousel2_header');
+	      _head3.innerHTML = "Party Animal";
+	      var _desc3 = document.getElementById('carousel2_p');
+	      _desc3.innerHTML = "You must tear up the dance floor (Or just really like dance music).";
+	    } else if (energy > .70) {
+	      var _image4 = document.getElementById('carousel2');
+	      _image4.src = "img/high-energy.jpeg";
+	      var _head4 = document.getElementById('carousel2_header');
+	      _head4.innerHTML = "Amped Up";
+	      var _desc4 = document.getElementById('carousel2_p');
+	      _desc4.innerHTML = "No chill here. Your music suggests you just can't sit still.";
+	    } else if (energy < 0.5) {
+	      var _image5 = document.getElementById('carousel2');
+	      _image5.src = "img/chill.jpeg";
+	      var _head5 = document.getElementById('carousel2_header');
+	      _head5.innerHTML = "Chilled Out";
+	      var _desc5 = document.getElementById('carousel2_p');
+	      _desc5.innerHTML = "Hectic day at work? You listen to relax.";
+	    } else {
+	      var _image6 = document.getElementById('carousel2');
+	      _image6.src = "img/404.jpeg";
+	      var _head6 = document.getElementById('carousel2_header');
+	      _head6.innerHTML = "404 Not Found";
+	      var _desc6 = document.getElementById('carousel2_p');
+	      _desc6.innerHTML = "You give us nothing interesting to say about your playlist.";
+	    }
+	
+	    if (tempo >= 160) {
+	      var _image7 = document.getElementById('carousel3');
+	      _image7.src = "img/fast-paced.jpeg";
+	      var _head7 = document.getElementById('carousel3_header');
+	      _head7.innerHTML = "Toe Tapper";
+	      var _desc7 = document.getElementById('carousel3_p');
+	      _desc7.innerHTML = "If your songs were a person, they would look like this. Fast tempo is an understatement.";
+	    } else if (tempo < 100) {
+	      var _image8 = document.getElementById('carousel3');
+	      _image8.src = "img/slow-tempo.jpeg";
+	      var _head8 = document.getElementById('carousel3_header');
+	      _head8.innerHTML = "Like a Snail";
+	      var _desc8 = document.getElementById('carousel3_p');
+	      _desc8.innerHTML = "Your songs are SLOW.  Not a bad thing though, maybe you listen to relax.";
+	    } else {
+	      var _image9 = document.getElementById('carousel3');
+	      _image9.src = "img/404.jpeg";
+	      var _head9 = document.getElementById('carousel3_header');
+	      _head9.innerHTML = "404 Too Normal";
+	      var _desc9 = document.getElementById('carousel3_p');
+	      _desc9.innerHTML = "Your tempo is just too average for anything fun.";
+	    }
+	
 	    if (playlist._public) {
 	      saveData(userID, playlistID, playlistName, imgSrc, popularity, pH, acousticness, danceability, energy, tempo);
 	    }
